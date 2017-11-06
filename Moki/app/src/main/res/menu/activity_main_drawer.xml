@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:checkableBehavior="single">
+
+    <item
+        android:id="@+id/menu_trang_chu"
+        android:icon="@drawable/setting_home_icon"
+        android:title="@string/trang_chu" />
+    <item
+        android:id="@+id/menu_tin_tuc"
+        android:icon="@drawable/sidemenu_icon_news_normal"
+        android:title="@string/tin_tuc" />
+    <item
+        android:id="@+id/menu_danh_sach_yeu_thich"
+        android:icon="@drawable/sidemenu_icon_like_normal"
+        android:title="@string/danh_sach_yeu_thich" />
+    <item
+        android:id="@+id/menu_danh_sach_ban"
+        android:icon="@drawable/sidemenu_icon_exhibit_normal"
+        android:title="@string/danh_sach_ban" />
+
+    <item
+        android:id="@+id/menu_danh_sach_mua"
+        android:icon="@drawable/product_new_price"
+        android:title="@string/danh_sach_mua" />
+    <item
+        android:id="@+id/menu_tu_thien"
+        android:icon="@drawable/sidemenu_icon_charity"
+        android:title="@string/tu_thien" />
+    <item
+        android:id="@+id/menu_thiet_lap"
+        android:icon="@drawable/sidemenu_icon_setting_normal"
+        android:title="@string/thiet_lap" />
+    <item
+        android:id="@+id/menu_trung_tam_ho_tro"
+        android:icon="@drawable/sidemenu_icon_contact_normal"
+        android:title="@string/trung_tam_ho_tro" />
+    <item
+        android:id="@+id/menu_gioi_thieu_moki"
+        android:icon="@drawable/setting_account_icon"
+        android:title="@string/tu_thien" />
+    <item
+        android:id="@+id/menu_dang_nhap"
+        android:icon="@drawable/sidemenu_icon_logout_normal"
+        android:title="@string/dang_nhap" />
+    </group>
+
+</menu>

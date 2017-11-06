@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="ambe.com.vn.moki.activities.ProductDetailActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_product_detail"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_40dp"
+        android:background="@color/colorWhite">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_back_small" />
+
+            <TextView
+                android:id="@+id/txt_tittle_tb_product_detail"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:gravity="center"
+                android:text="Samsung Galaxy S8"
+                android:textColor="@color/colorRed"
+                android:textSize="@dimen/size_20sp" />
+
+            <ImageView
+                android:id="@+id/img_ba_cham"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:src="@drawable/cham" />
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <com.ecloud.pulltozoomview.PullToZoomScrollViewEx
+        android:id="@+id/scroll_detail_product"
+        android:layout_width="match_parent"
+        android:layout_below="@id/tb_product_detail"
+        android:background="@color/colorGrayLight"
+        android:layout_height="match_parent">
+
+    </com.ecloud.pulltozoomview.PullToZoomScrollViewEx>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:weightSum="10"
+        android:layout_height="@dimen/size_50dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/txt_product_detail_gia"
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:textColor="@color/colorWhite"
+            android:gravity="center_vertical"
+            android:background="@color/colorGray"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/size_20sp"
+            android:text="      Giá: 250.000 VNĐ"/>
+        <TextView
+            android:id="@+id/txt_product_detail_mua"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:background="@color/colorRedDark"
+            android:layout_height="match_parent"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:textSize="@dimen/size_20sp"
+            android:text="Mua"/>
+    </LinearLayout>
+
+</RelativeLayout>

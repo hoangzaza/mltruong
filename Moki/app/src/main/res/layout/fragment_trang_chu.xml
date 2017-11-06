@@ -1,0 +1,198 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rll_trang_chu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="ambe.com.vn.moki.fragments.TrangChuFragment">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout_trang_chu"
+        style="@style/customTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_50dp"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/colorWhite"
+        android:elevation="6dp"
+        android:textAllCaps="false"
+        app:tabGravity="center"
+        app:tabMinWidth="@dimen/size_20dp"
+        app:tabMode="scrollable"
+        app:tabPadding="@dimen/size_10dp"
+        app:tabPaddingBottom="@dimen/size_10dp"
+        app:tabPaddingTop="@dimen/size_10dp"
+        app:tabSelectedTextColor="@color/colorRed"
+        app:tabTextAppearance="@style/TabTextAppearance"></android.support.design.widget.TabLayout>
+
+
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tab_layout_trang_chu">
+
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/view_flipper"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_150dp"
+                        android:visibility="visible"></android.support.v4.view.ViewPager>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="@dimen/size_10dp">
+
+                        <View
+                            android:id="@+id/view_pager_1"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_marginBottom="@dimen/size_10dp"
+                            android:background="@drawable/hinh_tron_hong" />
+
+                        <View
+                            android:id="@+id/view_pager_2"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_marginLeft="@dimen/size_5dp"
+                            android:layout_marginBottom="@dimen/size_10dp"
+
+                            android:layout_toRightOf="@id/view_pager_1"
+                            android:background="@drawable/hinh_tron_xam" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_2dp"
+                android:background="@color/colorGrayLight" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_40dp"
+                android:orientation="horizontal"
+                android:weightSum="9">
+
+                <LinearLayout
+                    android:id="@+id/ll_sap_xep"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/size_30dp"
+                        android:layout_height="@dimen/size_30dp"
+                        android:src="@drawable/icon_sort_on" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_10dp"
+                        android:text="@string/sap_xep"
+                        android:textColor="@color/colorBlack" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGrayLight" />
+
+                <LinearLayout
+                    android:id="@+id/ll_loc"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/size_30dp"
+                        android:layout_height="@dimen/size_30dp"
+                        android:src="@drawable/icon_filter_on" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_10dp"
+                        android:text="@string/loc"
+                        android:textColor="@color/colorBlack" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGrayLight" />
+
+                <LinearLayout
+                    android:id="@+id/ll_xung_quanh"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/size_30dp"
+                        android:layout_height="@dimen/size_30dp"
+                        android:src="@drawable/icon_range_on" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/size_10dp"
+                        android:text="@string/xung_quanh"
+                        android:textColor="@color/colorBlack" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_1dp"
+                android:background="@color/colorGrayLight" />
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager_trang_chu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v4.view.ViewPager>
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+</RelativeLayout>
+

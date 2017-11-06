@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ListView
+        android:id="@+id/list_commt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_10dp"
+        android:layout_above="@id/txt_comment_dau_tien"></ListView>
+
+    <TextView
+        android:id="@+id/txt_comment_dau_tien"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_50dp"
+        android:background="@drawable/btn_bo_qua"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:textColor="@color/colorWhite"
+        android:layout_margin="@dimen/size_20dp"
+        android:text="@string/binh_luan_dau_tien"/>
+
+</RelativeLayout>

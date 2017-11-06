@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Moki.iml" filepath="$PROJECT_DIR$/Moki.iml" />
+      <module fileurl="file://F:\2017-Moki\moki-ml\moki-ml\Moki\app\src\androidTest\androidTest.iml" filepath="F:\2017-Moki\moki-ml\moki-ml\Moki\app\src\androidTest\androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://F:\2017-Moki\moki-ml\moki-ml\Moki\app\src\main\main.iml" filepath="F:\2017-Moki\moki-ml\moki-ml\Moki\app\src\main\main.iml" />
+      <module fileurl="file://F:\2017-Moki\moki-ml\moki-ml\Moki\app\src\test\test.iml" filepath="F:\2017-Moki\moki-ml\moki-ml\Moki\app\src\test\test.iml" />
+    </modules>
+  </component>
+</project>

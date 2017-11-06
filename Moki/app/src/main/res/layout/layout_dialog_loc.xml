@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    android:weightSum="10">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/loc_do"
+        android:textSize="26dp"
+        android:layout_marginLeft="@dimen/size_5dp"
+        android:textColor="@color/maudo"/>
+
+    <TextView
+        android:id="@+id/txt_1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_2dp"
+        android:background="@color/colorGrayLight" />
+
+    <ListView
+        android:id="@+id/list_loc"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:layout_below="@id/txt_1"
+        android:layout_centerInParent="true">
+    </ListView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_2dp"
+        android:layout_below="@id/list_loc"
+        android:background="@color/colorGrayLight" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/list_loc"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_weight="2"
+        android:weightSum="10">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="5">
+
+            <Button
+                android:id="@+id/btn_huy_loc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:text="@string/huy"
+                android:visibility="visible" />
+
+
+            <Button
+                android:id="@+id/btn_xoa_het_loc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+
+                android:text="@string/xoa_het"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_loc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:layout_weight="5"
+            android:text="@string/loc_do" />
+    </LinearLayout>
+
+
+</LinearLayout>

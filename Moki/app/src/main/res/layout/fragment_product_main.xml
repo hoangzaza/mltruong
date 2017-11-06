@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pager_xanhdo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<android.support.v4.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/colorWhite"-->
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:addStatesFromChildren="true"
+        android:layout_centerInParent="true">
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcv_main_product"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+
+    <!--</android.support.v4.widget.NestedScrollView>-->
+
+    <!--<android.support.v4.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+
+        <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+            android:id="@+id/xxx"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"/>
+
+
+    <!--</android.support.v4.widget.NestedScrollView>-->
+    </ViewFlipper>
+
+
+</android.support.constraint.ConstraintLayout>
+

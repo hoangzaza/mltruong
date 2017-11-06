@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#F5F5F5"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_back_dialog_gia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_back" />
+
+        <TextView
+            android:id="@+id/txt_title_dialog_gia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Danh mục"
+            android:textColor="@color/colorRed"
+            android:textSize="@dimen/size_20sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_2dp"
+        android:textColor="@color/colorBlack" />
+
+    <LinearLayout
+        android:id="@+id/lln_seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:id="@+id/txt_min"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_16dp"
+                android:layout_weight="5"
+                android:gravity="start"
+                android:text="0 VNĐ" />
+
+            <TextView
+                android:id="@+id/txt_max"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/size_16dp"
+                android:layout_weight="5"
+                android:gravity="end"
+                android:text="30.000.000 VNĐ" />
+        </LinearLayout>
+
+        <com.crystal.crystalrangeseekbar.widgets.BubbleThumbRangeSeekbar
+            android:id="@+id/seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:bar_color="@color/colorAccent"
+            app:bar_highlight_color="@color/colorPrimary"
+            app:corner_radius="10"
+            app:data_type="_long"
+            app:left_thumb_image="@drawable/seek_thumb_disabled"
+            app:left_thumb_image_pressed="@drawable/seek_thumb_pressed"
+            app:max_value="30000000"
+            app:min_value="0"
+            app:right_thumb_image="@drawable/seek_thumb_disabled"
+            app:right_thumb_image_pressed="@drawable/seek_thumb_pressed"
+            app:steps="1000" />
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/list_dialog_gia"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8">
+
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <Button
+            android:id="@+id/btn_huy_dialog_gia"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+
+            android:background="#F5F5F5"
+            android:text="@string/huy" />
+
+        <Button
+            android:id="@+id/btn_loc_dialog_gia"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+
+            android:background="#F5F5F5"
+            android:text="@string/loc" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

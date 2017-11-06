@@ -1,0 +1,108 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ambe.com.vn.moki.fragments.LoginFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/background_login" />
+
+    <ImageView
+        android:id="@+id/img_logo_login"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="@dimen/size_30dp"
+        android:src="@drawable/logo_login" />
+
+    <LinearLayout
+        android:id="@+id/lnl_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_logo_login"
+
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edit_phone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_50dp"
+            android:layout_below="@id/img_logo_login"
+            android:layout_marginLeft="@dimen/size_20dp"
+            android:layout_marginRight="@dimen/size_20dp"
+            android:layout_marginTop="@dimen/size_20dp"
+            android:drawableLeft="@drawable/phone_login"
+            android:background="@drawable/bg_edit_txt"
+            android:hint="@string/so_dien_thoai" />
+
+        <EditText
+            android:id="@+id/edit_mat_khau"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_50dp"
+            android:layout_below="@id/img_logo_login"
+            android:layout_marginLeft="@dimen/size_20dp"
+            android:layout_marginRight="@dimen/size_20dp"
+            android:layout_marginTop="@dimen/size_10dp"
+            android:drawableLeft="@drawable/lock_login"
+            android:background="@drawable/bg_edit_txt"
+            android:hint="@string/mat_khau"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_40dp"
+            android:layout_margin="@dimen/size_20dp"
+            android:background="@drawable/btn_bo_qua"
+            android:text="@string/dang_nhap"
+            android:textColor="@color/colorWhite" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_40dp"
+            android:layout_marginLeft="@dimen/size_20dp"
+            android:layout_marginRight="@dimen/size_20dp"
+            android:layout_weight="10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_dang_ky"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/size_20dp"
+                android:layout_weight="5"
+                android:background="@drawable/bg_dang_ky"
+                android:gravity="center"
+                android:text="@string/dang_ky"
+                android:textColor="@color/colorRed" />
+
+            <TextView
+                android:id="@+id/txt_bo_qua"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="@drawable/bg_dang_ky"
+                android:gravity="center"
+                android:text="@string/bo_qua"
+                android:textColor="@color/colorRed" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/txt_quen_mat_khau"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/size_20dp"
+        android:gravity="center_horizontal"
+        android:text="@string/quen_mat_khau"
+        android:textColor="@color/colorWhite" />
+
+
+</RelativeLayout>

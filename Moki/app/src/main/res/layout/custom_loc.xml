@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/colorWhite"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_40dp"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/size_10dp"
+        android:weightSum="10">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center|start"
+            android:layout_weight="9">
+            <TextView
+                android:id="@+id/txt_title_loc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/size_16dp"
+                android:text="@string/danh_muc"/>
+            <TextView
+                android:id="@+id/txt_subtitle_loc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorGray"
+                android:text="@string/tat_ca"/>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/imge_check_loc"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_30dp"
+            android:layout_gravity="center"
+
+            android:layout_marginRight="5dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_2dp"
+        android:layout_below="@id/list_loc"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorGrayLight" />
+
+
+</LinearLayout>

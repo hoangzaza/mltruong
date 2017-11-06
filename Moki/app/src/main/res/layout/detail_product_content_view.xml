@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_10dp"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/size_20dp"
+                android:drawableLeft="@drawable/folder"
+
+                android:gravity="start|center"
+
+                android:text="   Danh mục"
+                android:textColor="@color/colorBlack" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/size_10dp"
+                android:layout_marginTop="@dimen/size_10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_danh_muc_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_30dp"
+                    android:background="@drawable/bg_dang_ky"
+                    android:gravity="start|center"
+                    android:text="    Đồ dùng gia đình   "
+                    android:textColor="@color/colorRed" />
+
+                <TextView
+                    android:id="@+id/txt_danh_muc_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_30dp"
+                    android:layout_marginTop="@dimen/size_10dp"
+                    android:background="@drawable/bg_dang_ky"
+                    android:gravity="start|center"
+                    android:text="   Đồ dùng gia đình   "
+                    android:textColor="@color/colorRed" />
+
+                <TextView
+                    android:id="@+id/txt_danh_muc_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_30dp"
+                    android:layout_marginTop="@dimen/size_10dp"
+                    android:background="@drawable/bg_dang_ky"
+                    android:gravity="start|center"
+                    android:text="   Đồ dùng gia đình   "
+                    android:textColor="@color/colorRed" />
+
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/size_2dp"
+            android:background="@color/colorWhite">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/size_10dp"
+
+                android:layout_marginLeft="@dimen/size_20dp"
+                android:layout_marginTop="@dimen/size_10dp"
+                android:drawableLeft="@drawable/weight_icon"
+                android:gravity="start|center"
+                android:text="   Khối lượng"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/txt_khoi_luong"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/size_10dp"
+                android:layout_marginTop="@dimen/size_10dp"
+
+                android:gravity="start|center"
+                android:text="Từ 0.5kg đến 1kg"
+                android:textColor="@color/colorBlack" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_marginTop="@dimen/size_2dp"
+            android:background="@color/colorWhite">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/size_10dp"
+                android:layout_marginLeft="@dimen/size_20dp"
+                android:layout_marginTop="@dimen/size_10dp"
+                android:drawableLeft="@drawable/size"
+                android:gravity="start|center"
+                android:text="   Kích thước"
+
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/txt_kich_thuoc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/size_10dp"
+                android:layout_marginTop="@dimen/size_10dp"
+                android:gravity="start|center"
+
+                android:text="1cm x 1cm x 1cm"
+                android:textColor="@color/colorBlack" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/size_2dp"
+            android:background="@color/colorWhite">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/size_10dp"
+                android:layout_marginLeft="@dimen/size_20dp"
+                android:layout_marginTop="@dimen/size_10dp"
+                android:drawableLeft="@drawable/status_product_icon"
+
+                android:gravity="start|center"
+                android:text="   Trạng thái"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/txt_trang_thai"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/size_10dp"
+                android:layout_marginTop="@dimen/size_10dp"
+                android:gravity="start|center"
+
+                android:text="Mới"
+                android:textColor="@color/colorBlack" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/size_2dp"
+            android:background="@color/colorWhite">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/size_10dp"
+                android:layout_marginLeft="@dimen/size_20dp"
+                android:layout_marginTop="@dimen/size_10dp"
+                android:drawableLeft="@drawable/location_icon"
+                android:gravity="start|center"
+
+                android:text="   Nơi bán"
+                android:textColor="@color/colorBlack" />
+
+            <TextView
+                android:id="@+id/txx_noi_ban"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/size_10dp"
+                android:layout_marginTop="@dimen/size_10dp"
+                android:gravity="start|center"
+
+                android:text="Nam trực, Nam Định"
+                android:textColor="@color/colorBlack" />
+
+        </TableRow>
+    </TableLayout>
+
+<include layout="@layout/list_comment_content_view"></include>
+</LinearLayout>

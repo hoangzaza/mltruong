@@ -7,82 +7,153 @@
     android:orientation="vertical"
     tools:context="ambe.com.vn.moki.activities.ProductDetailActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tb_product_detail"
+    <RelativeLayout
+        android:id="@+id/rll_productdetail_1"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_40dp"
-        android:background="@color/colorWhite">
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tb_product_detail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_40dp"
+            android:background="@color/colorWhite">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_back_small" />
+
+                <TextView
+                    android:id="@+id/txt_tittle_tb_product_detail"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8"
+                    android:gravity="center"
+                    android:text="Samsung Galaxy S8"
+                    android:textColor="@color/colorRed"
+                    android:textSize="@dimen/size_20sp" />
+
+                <ImageView
+                    android:id="@+id/img_ba_cham"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:src="@drawable/cham" />
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.Toolbar>
+
+        <com.ecloud.pulltozoomview.PullToZoomScrollViewEx
+            android:id="@+id/scroll_detail_product"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tb_product_detail"
+            android:background="@color/colorGrayLight">
+
+        </com.ecloud.pulltozoomview.PullToZoomScrollViewEx>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/size_50dp"
+            android:layout_alignParentBottom="true"
             android:orientation="horizontal"
             android:weightSum="10">
 
-            <ImageView
-                android:id="@+id/img_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/icon_back_small" />
-
             <TextView
-                android:id="@+id/txt_tittle_tb_product_detail"
+                android:id="@+id/txt_product_detail_gia"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="8"
-                android:gravity="center"
-                android:text="Samsung Galaxy S8"
-                android:textColor="@color/colorRed"
+                android:layout_weight="7"
+                android:background="@color/colorGray"
+                android:gravity="center_vertical"
+                android:text="      Giá: 250.000 VNĐ"
+                android:textColor="@color/colorWhite"
                 android:textSize="@dimen/size_20sp" />
 
-            <ImageView
-                android:id="@+id/img_ba_cham"
+            <TextView
+                android:id="@+id/txt_product_detail_mua"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:src="@drawable/cham" />
+                android:layout_weight="3"
+                android:background="@color/colorRedDark"
+                android:gravity="center"
+                android:text="Mua"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/size_20sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rll_productdetail_2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#50000000"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/lnl_5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/lnl_4"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnl_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="6dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/bg_layout_dont_network"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_quay_ve_trang_chu"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_50dp"
+                    android:gravity="center"
+                    android:text="Quay về trang chủ"
+                    android:textColor="@color/colorBlack" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGrayLight" />
+
+                <TextView
+                    android:id="@+id/txt_bao_cao_vi_pham"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_50dp"
+                    android:gravity="center"
+                    android:text="Báo cáo vi phạm"
+                    android:textColor="@color/colorBlack" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btn_dong_product_detail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_50dp"
+                android:background="@drawable/bg_tim_kiem"
+                android:gravity="center"
+                android:text="@string/dong"
+                android:textColor="@color/colorWhite" />
 
         </LinearLayout>
-
-
-    </android.support.v7.widget.Toolbar>
-
-    <com.ecloud.pulltozoomview.PullToZoomScrollViewEx
-        android:id="@+id/scroll_detail_product"
-        android:layout_width="match_parent"
-        android:layout_below="@id/tb_product_detail"
-        android:background="@color/colorGrayLight"
-        android:layout_height="match_parent">
-
-    </com.ecloud.pulltozoomview.PullToZoomScrollViewEx>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:weightSum="10"
-        android:layout_height="@dimen/size_50dp"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
-        <TextView
-            android:id="@+id/txt_product_detail_gia"
-            android:layout_width="0dp"
-            android:layout_weight="7"
-            android:textColor="@color/colorWhite"
-            android:gravity="center_vertical"
-            android:background="@color/colorGray"
-            android:layout_height="match_parent"
-            android:textSize="@dimen/size_20sp"
-            android:text="      Giá: 250.000 VNĐ"/>
-        <TextView
-            android:id="@+id/txt_product_detail_mua"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:background="@color/colorRedDark"
-            android:layout_height="match_parent"
-            android:textColor="@color/colorWhite"
-            android:gravity="center"
-            android:textSize="@dimen/size_20sp"
-            android:text="Mua"/>
-    </LinearLayout>
-
+    </RelativeLayout>
 </RelativeLayout>

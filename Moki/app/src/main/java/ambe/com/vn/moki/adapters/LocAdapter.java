@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import ambe.com.vn.moki.R;
-import ambe.com.vn.moki.models.Loc;
+import ambe.com.vn.moki.models.others.Loc;
 
 /**
  * Created by AMBE on 18/09/2017.

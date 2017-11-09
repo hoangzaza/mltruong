@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import ambe.com.vn.moki.R;
@@ -158,7 +159,9 @@ public class ListviewMainAdapter extends BaseAdapter implements StickyListHeader
         itemView.tvname.setText(arr.get(i).getName_product());
 
         itemView.tvdescription.setText(arr.get(i).getDescribed());
-        itemView.tvprice.setText(arr.get(i).getPrice()+" VNĐ ");
+        DecimalFormat dcf= new DecimalFormat("###,###,###");
+
+        itemView.tvprice.setText(dcf.format(Integer.parseInt(arr.get(i).getPrice()))+" VNĐ ");
         itemView.btn_love.setText(arr.get(i).getLike().size() + "");
         itemView.btn_comment.setText(arr.get(i).getComment().size() + "");
         itemView.btn_love.setOnClickListener(this);

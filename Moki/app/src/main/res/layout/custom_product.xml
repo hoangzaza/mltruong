@@ -22,8 +22,8 @@
                 android:id="@+id/img_custom_product"
                 android:layout_width="@dimen/size_200dp"
                 android:layout_height="@dimen/size_200dp"
-                android:layout_margin="@dimen/size_5dp"
-                android:scaleType="centerInside"
+                android:layout_margin="8dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/android" />
 
             <TextView
@@ -32,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/size_10dp"
+                android:lines="2"
                 android:gravity="center"
                 android:text="Sam sung galaxy"
                 android:textColor="@color/colorBlack" />

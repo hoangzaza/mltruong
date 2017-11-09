@@ -102,7 +102,7 @@ public class ListProductFragment extends Fragment {
         arrProducts.add(new  Product("Sam sung galaxy S8",images,"1250000",test,test));
         arrProducts.add(new  Product("Sam sung galaxy S8",images,"1250000",test,test));
 
-        adapter=new ProductAdapter(getActivity(),arrProducts);
+        adapter=new ProductAdapter(rcvProduct,getActivity(),arrProducts);
         rcvProduct.setAdapter(adapter);
 
     }

@@ -1,7 +1,5 @@
 package ambe.com.vn.moki.activities;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,8 +9,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import ambe.com.vn.moki.R;
@@ -29,8 +31,17 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private ViewPager viewPager;
     private Toolbar toolbar;
     private ImageView imgBack;
+    private ImageView imgShare;
+    private RelativeLayout rllAn;
+    private TextView txtShare;
+    private TextView txtChanNguoiDung;
+    private TextView txtChiaSeLink;
+    private TextView txtDong;
     private MyAdapter myAdapter;
-    private Button btnSanPham, btnNguoiTheoDoi, btnDangTheoDoi;
+    private LinearLayout lnl7;
+    private Button btnSanPham;
+    private Button btnNguoiTheoDoi;
+    private Button btnDangTheoDoi;
 
 
     @Override
@@ -52,11 +63,18 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         btnDangTheoDoi = findViewById(R.id.txt_activity_profile_dang_theo_doi);
         btnNguoiTheoDoi = findViewById(R.id.txt_activity_profile_ng_theo_doi);
         btnSanPham = findViewById(R.id.txt_activity_profile_san_pham);
+        imgShare = findViewById(R.id.img_profile_chia_se);
+        rllAn = findViewById(R.id.rll_activity_profile);
+        txtChanNguoiDung = findViewById(R.id.txt_chan_nguoi_dung);
+        txtShare = findViewById(R.id.txt_chia_se_activiti_profile);
+        txtChiaSeLink = findViewById(R.id.txt_sao_chep_link_chia_se);
+        txtDong = findViewById(R.id.btn_dong_activity_profile);
+        lnl7 = findViewById(R.id.lnl_7);
 
         typeface = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
 
 
- //       btnDangTheoDoi.setTypeface(typeface);
+        //       btnDangTheoDoi.setTypeface(typeface);
         myAdapter = new MyAdapter(getSupportFragmentManager());
         viewPager.setAdapter(myAdapter);
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
@@ -75,6 +93,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         btnSanPham.setOnClickListener(this);
         btnDangTheoDoi.setOnClickListener(this);
         btnNguoiTheoDoi.setOnClickListener(this);
+        imgShare.setOnClickListener(this);
+        txtDong.setOnClickListener(this);
+        txtChiaSeLink.setOnClickListener(this);
+        txtShare.setOnClickListener(this);
+        txtChanNguoiDung.setOnClickListener(this);
+        lnl7.setOnClickListener(this);
 
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -162,7 +186,31 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 xuLyChonTxtSanPham();
                 viewPager.setCurrentItem(2, true);
                 break;
+            case R.id.img_profile_chia_se:
+                xuLyImgChisSe();
+                break;
+            case R.id.btn_dong_activity_profile:
+                xuLyDong();
+                break;
+            case R.id.lnl_7:
+                xuLyDong();
+                break;
+                
         }
+    }
+
+    private void xuLyDong() {
+        rllAn.setVisibility(View.GONE);
+        Animation anim= AnimationUtils.loadAnimation(this,R.anim.slide_out_from_bottom);
+        rllAn.setAnimation(anim);
+
+    }
+
+    private void xuLyImgChisSe() {
+        rllAn.setVisibility(View.VISIBLE);
+        Animation anim= AnimationUtils.loadAnimation(this,R.anim.slide_in_from_bottom);
+        rllAn.setAnimation(anim);
+
     }
 
     private class MyAdapter extends FragmentStatePagerAdapter {

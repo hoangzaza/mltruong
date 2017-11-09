@@ -14,7 +14,7 @@ public class Profile implements Serializable {
     private String password;
     private String token;
     private String email;
-    private String usename;
+    private String username;
     private String phonenumber;
     private ArrayList<Product> list_product;
     private String url;
@@ -28,7 +28,7 @@ public class Profile implements Serializable {
     private String rates_lv2;
     private String rates_lv3;
     private String city;
-    private String listing_product;
+    private int listing_product;
     private ArrayList<Object> followed;
     private String is_blocked;
     private Default_address default_address;
@@ -39,12 +39,12 @@ public class Profile implements Serializable {
     private ArrayList<Object> list_chat;
     private ArrayList<Object> list_order_address;
 
-    public Profile(String id_user, String password, String token, String email, String usename, String phonenumber, ArrayList<Product> list_product, String url, String created, String status, String avatar, String firsname, String lastname, String address, String rates_lv1, String rates_lv2, String rates_lv3, String city, String listing_product, ArrayList<Object> followed, String is_blocked, Default_address default_address, int online, ArrayList<Object> list_like, ArrayList<Object> list_search, ArrayList<Object> list_following, ArrayList<Object> list_chat, ArrayList<Object> list_order_address) {
+    public Profile(String id_user, String password, String token, String email, String username, String phonenumber, ArrayList<Product> list_product, String url, String created, String status, String avatar, String firsname, String lastname, String address, String rates_lv1, String rates_lv2, String rates_lv3, String city, int listing_product, ArrayList<Object> followed, String is_blocked, Default_address default_address, int online, ArrayList<Object> list_like, ArrayList<Object> list_search, ArrayList<Object> list_following, ArrayList<Object> list_chat, ArrayList<Object> list_order_address) {
         this.id_user = id_user;
         this.password = password;
         this.token = token;
         this.email = email;
-        this.usename = usename;
+        this.username = username;
         this.phonenumber = phonenumber;
         this.list_product = list_product;
         this.url = url;
@@ -73,12 +73,12 @@ public class Profile implements Serializable {
     public Profile() {
     }
 
-    public String getId_user() {
+    public String get_id() {
         return id_user;
     }
 
-    public void setId_user(String id_user) {
-        this.id_user = id_user;
+    public void set_id(String _id) {
+        this.id_user = _id;
     }
 
     public String getPassword() {
@@ -105,12 +105,12 @@ public class Profile implements Serializable {
         this.email = email;
     }
 
-    public String getUsename() {
-        return usename;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUsename(String usename) {
-        this.usename = usename;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPhonenumber() {
@@ -217,11 +217,11 @@ public class Profile implements Serializable {
         this.city = city;
     }
 
-    public String getListing_product() {
+    public int getListing_product() {
         return listing_product;
     }
 
-    public void setListing_product(String listing_product) {
+    public void setListing_product(int listing_product) {
         this.listing_product = listing_product;
     }
 

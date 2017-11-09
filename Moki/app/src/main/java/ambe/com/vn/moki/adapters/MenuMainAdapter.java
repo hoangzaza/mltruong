@@ -11,8 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import ambe.com.vn.moki.R;
-import ambe.com.vn.moki.models.MenuItem;
-import ambe.com.vn.moki.models.products.Image;
+import ambe.com.vn.moki.models.others.MenuItem;
 
 /**
  * Created by AMBE on 13/10/2017.

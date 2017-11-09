@@ -1,4 +1,4 @@
-package ambe.com.vn.moki.models;
+package ambe.com.vn.moki.models.others;
 
 import java.io.Serializable;
 

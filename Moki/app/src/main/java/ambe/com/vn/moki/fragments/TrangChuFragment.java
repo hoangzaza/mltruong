@@ -2,25 +2,16 @@ package ambe.com.vn.moki.fragments;
 
 
 import android.app.Dialog;
-import android.app.VoiceInteractor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SearchView;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.ActionMode;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,29 +19,24 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ViewFlipper;
 
 import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.BubbleThumbRangeSeekbar;
-import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.SimpleFormatter;
 
 import ambe.com.vn.moki.R;
-import ambe.com.vn.moki.activities.MainActivity;
 import ambe.com.vn.moki.adapters.IntroAdapter;
 import ambe.com.vn.moki.adapters.LocAdapter;
 import ambe.com.vn.moki.adapters.PagerTrangChuAdapter;
 import ambe.com.vn.moki.adapters.SingleChoiAdapter;
 import ambe.com.vn.moki.adapters.StickyHeaderAdapter;
-import ambe.com.vn.moki.models.Loc;
-import ambe.com.vn.moki.models.SingleChoice;
+import ambe.com.vn.moki.models.others.Loc;
+import ambe.com.vn.moki.models.others.SingleChoice;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 /**

@@ -138,7 +138,7 @@ public class MainFragment extends Fragment {
         arrProducts.add(new  Product("Sam sung galaxy S8",images,"1250000",test,test));
 
 
-        productAdapter=new ProductAdapter(getActivity(),arrProducts);
+        productAdapter=new ProductAdapter(rcvProduct,getActivity(),arrProducts);
         rcvProduct.setAdapter(productAdapter);
     }
 }

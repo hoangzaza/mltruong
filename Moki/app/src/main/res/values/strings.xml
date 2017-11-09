@@ -14,13 +14,14 @@
     <string name="khoi_luong">Khối lượng</string>
     <string name="kich_thuoc">Kích thước</string>
     <string name="noi_ban">  Nơi bán</string>
-    <string name="binh_luan_dau_tien">Trờ thành người bình luận đầu tiên</string>
+    <string name="binh_luan_dau_tien">Trở thành người bình luận đầu tiên</string>
     <string name="san_pham">Sản phẩm</string>
     <string name="dang_theo_doi">Đang theo dõi</string>
     <string name="nguoi_theo_doi">Người theo dõi</string>
     <string name="quen_mat_khau"><u>Quên mật khẩu?</u></string>
     <string name="xem_tat_ca_danh_gia"><u><p><font color="red">Xem tất cả đánh giá</font></p></u></string>
     <string name="title_activity_main">MainActivity</string>
+
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -50,6 +51,8 @@
     <string name="nhan_hieu">Nhãn hiệu</string>
     <string name="tim_kiem">Tìm kiếm</string>
     <string name="huong_dan_tim_kiem">Hướng dẫn tìm kiếm</string>
+    <string name="dong">Đóng</string>
+    <string name="dang_xuat">Đăng xuất</string>
 
     <string-array name="arrTinhThanh">
         <item>An Giang</item>

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import ambe.com.vn.moki.R;
-import ambe.com.vn.moki.models.SingleChoice;
+import ambe.com.vn.moki.models.others.SingleChoice;
 
 /**
  * Created by AMBE on 12/10/2017.

@@ -37,8 +37,10 @@
                     android:id="@+id/txt_danh_muc_1"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/size_30dp"
+                    android:paddingRight="@dimen/size_10dp"
                     android:background="@drawable/bg_dang_ky"
                     android:gravity="start|center"
+                    android:paddingLeft="@dimen/size_10dp"
                     android:text="    Đồ dùng gia đình   "
                     android:textColor="@color/colorRed" />
 
@@ -47,6 +49,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/size_30dp"
                     android:layout_marginTop="@dimen/size_10dp"
+                    android:paddingRight="@dimen/size_10dp"
+                    android:paddingLeft="@dimen/size_10dp"
                     android:background="@drawable/bg_dang_ky"
                     android:gravity="start|center"
                     android:text="   Đồ dùng gia đình   "
@@ -57,6 +61,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/size_30dp"
                     android:layout_marginTop="@dimen/size_10dp"
+                    android:paddingRight="@dimen/size_10dp"
+                    android:paddingLeft="@dimen/size_10dp"
                     android:background="@drawable/bg_dang_ky"
                     android:gravity="start|center"
                     android:text="   Đồ dùng gia đình   "

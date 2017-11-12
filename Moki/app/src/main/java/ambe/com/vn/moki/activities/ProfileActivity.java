@@ -1,5 +1,6 @@
 package ambe.com.vn.moki.activities;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -17,9 +19,27 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import ambe.com.vn.moki.R;
 import ambe.com.vn.moki.fragments.FollowFragment;
-import ambe.com.vn.moki.fragments.ListProductFragment;
+import ambe.com.vn.moki.fragments.ListProductOfProfileFragment;
+import ambe.com.vn.moki.models.products.Seller;
+import ambe.com.vn.moki.models.users.GetProfile;
+import ambe.com.vn.moki.models.users.Profile;
+import ambe.com.vn.moki.utils.StringUrl;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -42,6 +62,20 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private Button btnSanPham;
     private Button btnNguoiTheoDoi;
     private Button btnDangTheoDoi;
+    private Seller seller;
+    private Profile profileSelected;
+    private ImageView imgAvatar;
+    private TextView txtTitle;
+    private TextView txtSlSp;
+    private TextView txtSlDiem;
+    private TextView txtSlRateGood;
+    private TextView txtSlRateNormal;
+    private TextView txtSlRateBad;
+    private TextView txtXemTatCaDanhGia;
+    private TextView txtGioiThieu;
+    private LinearLayout lnlTheoDoi;
+    private ArrayList<String> arrIdProduct = new ArrayList<>();
+    private Profile myProfile;
 
 
     @Override
@@ -51,8 +85,77 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         setSupportActionBar(toolbar);
         addControls();
         setUpActionBar();
+        getData();
         addEvents();
 
+
+    }
+
+    private void getData() {
+        Intent intent = getIntent();
+
+        Bundle bundle1 = intent.getBundleExtra("BUNMAIN");
+        Bundle bundle = intent.getBundleExtra("BUNDLE");
+        if (bundle != null) {
+            seller = (Seller) bundle.getSerializable("SELLER");
+
+            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, StringUrl.urlGetSellerInfor, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    if (response != null) {
+                        Log.d("ERROI", response.toString());
+                        GetProfile getProfile = new Gson().fromJson(response, GetProfile.class);
+                        profileSelected = getProfile.getData();
+                        setProfile();
+
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("ERROR", error.getMessage() + "");
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    HashMap<String, String> hashMap = new HashMap<>();
+                    hashMap.put("id_user", seller.getId_user());
+                    return hashMap;
+                }
+            };
+            requestQueue.add(stringRequest);
+        }
+        if (bundle1 != null) {
+            profileSelected = (Profile) bundle1.getSerializable("MYPRO");
+            setProfile();
+        }
+
+
+
+
+    }
+
+    private void setProfile() {
+        arrIdProduct = profileSelected.getList_product();
+        txtTitle.setText(profileSelected.getUsername());
+        if (profileSelected.getAvatar() == null) {
+            imgAvatar.setImageResource(R.drawable.unknown_user);
+        } else {
+            Picasso.with(getApplicationContext())
+                    .load(profileSelected.getAvatar())
+                    .error(R.drawable.no_image)
+                    .into(imgAvatar);
+        }
+
+        txtTitle.setText(profileSelected.getUsername());
+        txtSlSp.setText("     " + profileSelected.getList_product().size() + " \n Sản phẩm");
+        if (profileSelected.getStatus() == null) {
+            txtGioiThieu.setHint("Chưa có thông tin...");
+
+        } else {
+            txtGioiThieu.setText(profileSelected.getStatus() + "");
+        }
 
     }
 
@@ -70,6 +173,16 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         txtChiaSeLink = findViewById(R.id.txt_sao_chep_link_chia_se);
         txtDong = findViewById(R.id.btn_dong_activity_profile);
         lnl7 = findViewById(R.id.lnl_7);
+        imgAvatar = findViewById(R.id.circleImageView2);
+        txtSlDiem = findViewById(R.id.txt_sl_diem_profile);
+        txtSlSp = findViewById(R.id.txt_sl_san_pham_profile);
+        txtSlRateGood = findViewById(R.id.txt_sl_rate_good);
+        txtSlRateNormal = findViewById(R.id.txt_sl_rate_normal);
+        txtSlRateBad = findViewById(R.id.txt_sl_rate_bad);
+        txtXemTatCaDanhGia = findViewById(R.id.txt_xem_tat_ca_danh_gia);
+        lnlTheoDoi = findViewById(R.id.lnl_theo_doi);
+        txtGioiThieu = findViewById(R.id.txt_gioi_thieu_shop);
+        txtTitle = findViewById(R.id.txt_title_tb_profile_detail);
 
         typeface = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
 
@@ -195,25 +308,26 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.lnl_7:
                 xuLyDong();
                 break;
-                
+
         }
     }
 
     private void xuLyDong() {
         rllAn.setVisibility(View.GONE);
-        Animation anim= AnimationUtils.loadAnimation(this,R.anim.slide_out_from_bottom);
+        Animation anim = AnimationUtils.loadAnimation(this, R.anim.slide_out_from_bottom);
         rllAn.setAnimation(anim);
 
     }
 
     private void xuLyImgChisSe() {
         rllAn.setVisibility(View.VISIBLE);
-        Animation anim= AnimationUtils.loadAnimation(this,R.anim.slide_in_from_bottom);
+        Animation anim = AnimationUtils.loadAnimation(this, R.anim.slide_in_from_bottom);
         rllAn.setAnimation(anim);
 
     }
 
     private class MyAdapter extends FragmentStatePagerAdapter {
+
         public MyAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -222,8 +336,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    ListProductFragment listProductFragment = new ListProductFragment();
-                    return listProductFragment;
+                    ListProductOfProfileFragment listProductOfProfileFragment = new ListProductOfProfileFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putStringArrayList("ARR", arrIdProduct);
+
+                    listProductOfProfileFragment.setArguments(bundle);
+                    return listProductOfProfileFragment;
                 case 1:
                     FollowFragment myFollowFragment = new FollowFragment();
                     return myFollowFragment;

@@ -73,13 +73,7 @@ public class Profile implements Serializable {
     public Profile() {
     }
 
-    public String getId_user() {
-        return id_user;
-    }
 
-    public void setId_user(String id_user) {
-        this.id_user = id_user;
-    }
 
     public String getPassword() {
         return password;
@@ -119,6 +113,14 @@ public class Profile implements Serializable {
 
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
+    }
+
+    public String getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(String id_user) {
+        this.id_user = id_user;
     }
 
     public ArrayList<String> getList_product() {

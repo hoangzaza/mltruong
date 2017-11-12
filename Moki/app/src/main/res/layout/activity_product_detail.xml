@@ -52,12 +52,19 @@
 
 
         </android.support.v7.widget.Toolbar>
+        <TextView
+            android:id="@+id/txt_2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_1dp"
+            android:layout_below="@+id/tb_product_detail"
+            android:background="@color/colorRed" />
+
 
         <com.ecloud.pulltozoomview.PullToZoomScrollViewEx
             android:id="@+id/scroll_detail_product"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/tb_product_detail"
+            android:layout_below="@id/txt_2"
             android:background="@color/colorGrayLight">
 
         </com.ecloud.pulltozoomview.PullToZoomScrollViewEx>
@@ -75,8 +82,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="7"
                 android:background="@color/colorGray"
-                android:gravity="center_vertical"
-                android:text="      Giá: 250.000 VNĐ"
+                android:gravity="center"
+                android:text="Giá: 250.000 VNĐ"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/size_20sp" />
 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    tools:context="ambe.com.vn.moki.activities.CommentActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tb_atv_comment"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_40dp"
+        android:background="@color/colorWhite"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <ImageView
+                android:id="@+id/img_back_profile_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:src="@drawable/icon_back_small" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:gravity="center"
+                android:text="Bình luận"
+                android:textColor="@color/colorRed"
+                android:textSize="@dimen/size_20sp" />
+        </LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_1dp"
+        android:background="@color/colorRed" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_10dp"
+        android:gravity="center"
+        android:background="@color/colorWhite"
+        android:text="Hãy bình luận một cách văn minh! \n Tất cả bình luận của bạn đều đang được theo dõi"
+        android:textColor="@color/colorBlack" />
+
+    <ListView
+        android:id="@+id/list_atv_cmt"
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:background="@color/colorGrayLight">
+    </ListView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="10"
+        android:orientation="horizontal"
+        android:background="@color/maudo">
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="6dp"
+            android:layout_weight="8"
+
+            android:paddingLeft="@dimen/size_10dp"
+            android:background="@drawable/bg_cmt"/>
+    </LinearLayout>
+</LinearLayout>

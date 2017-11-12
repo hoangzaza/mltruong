@@ -124,6 +124,7 @@ public class TestDangNhapActivity extends AppCompatActivity implements View.OnCl
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.d("ABC", error.getMessage()+"");
+                    Log.d("ERRO", error.getMessage()+"");
                     Toast.makeText(TestDangNhapActivity.this, "Sai tài khoản hoặc mật khẩu", Toast.LENGTH_SHORT).show();
                 }
             }) {

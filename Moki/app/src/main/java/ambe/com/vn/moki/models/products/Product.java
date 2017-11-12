@@ -43,6 +43,10 @@ public class Product implements Serializable {
         this.comment = comment;
     }
 
+    public ArrayList<Category> getCategory() {
+        return category;
+    }
+
     public void setCategory(ArrayList<Category> category) {
         this.category = category;
     }

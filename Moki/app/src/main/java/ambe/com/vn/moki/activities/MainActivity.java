@@ -73,9 +73,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView img_search;
     private CircleImageView imgAvatarUser;
     private TextView txtName;
-    private  String id_user;
+    private  String id_user1;
 
     private Profile myProfile;
+    public static String token = "";
+    public static String id_user = "";
 
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static final int PERMISSION_REQUEST_CODE = 1;
@@ -130,8 +132,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         img_message = findViewById(R.id.img_message);
         img_notification = findViewById(R.id.img_notification);
         imgShell = findViewById(R.id.img_shell);
-        imgAvatarUser=findViewById(R.id.img_avatar_profile);
-        txtName=findViewById(R.id.txt_dang_nhap_main_atv);
+        imgAvatarUser = findViewById(R.id.img_avatar_profile);
+        txtName = findViewById(R.id.txt_dang_nhap_main_atv);
 
 
         drawer = findViewById(R.id.drawer_layout);
@@ -162,8 +164,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         drawer.useCustomBehavior(Gravity.START);
         drawer.useCustomBehavior(Gravity.END);
 
-        Intent intent=getIntent();
-        Bundle bundle=intent.getBundleExtra("BUNDLE");
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("BUNDLE");
         if (bundle != null) {
             myProfile = (Profile) bundle.getSerializable("PRO");
 
@@ -172,10 +174,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .error(R.drawable.no_image)
                     .into(imgAvatarUser);
             txtName.setText(myProfile.getUsername());
-            id_user = myProfile.getId_user();
+            id_user1 = myProfile.getId_user();
             Toast.makeText(this, id_user, Toast.LENGTH_SHORT).show();
             arrMenuItem.set(9, new MenuItem(R.drawable.sidemenu_icon_logout_normal, getString(R.string.dang_xuat),0));
+            token = myProfile.getToken();
+            id_user = myProfile.getId_user();
+            Log.d("TOKEN", token);
+
+            arrMenuItem.set(9, new MenuItem(R.drawable.sidemenu_icon_logout_normal, getString(R.string.dang_xuat), 0));
         }
+
+
     }
 
     private void addEvents() {
@@ -186,6 +195,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         img_search.setOnClickListener(this);
         img_changeview.setOnClickListener(this);
         imgShell.setOnClickListener(this);
+        imgAvatarUser.setOnClickListener(this);
+        txtName.setOnClickListener(this);
 
         listMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -221,6 +232,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             menuAdapter.notifyDataSetChanged();
                         }
 
+                        break;
+
+                    case 10:
+                        if (arrMenuItem.get(10).getTxtName().equals("Đăng nhập")) {
+                            Intent intent = new Intent(getApplicationContext(), TestDangNhapActivity.class);
+                            startActivity(intent);
+                        }
                         break;
                 }
             }
@@ -320,7 +338,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.img_shell:
                 Toast.makeText(MainActivity.this, "shell", Toast.LENGTH_LONG).show();
                 break;
+            case R.id.img_avatar_profile:
+                xuLyXemMyInfor();
+                break;
+            case R.id.txt_dang_nhap_main_atv:
+                xuLyXemMyInfor();
+                break;
         }
+
+    }
+
+    private void xuLyXemMyInfor() {
+
+        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+        Bundle bundle = new Bundle();
+        intent.putExtra("BUNMAIN", bundle);
+        bundle.putSerializable("MYPRO", myProfile);
+        startActivity(intent);
 
     }
 
@@ -349,7 +383,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(MainActivity.this, RegistrationIntentService.class);
         intent.putExtra("DEVICE_ID", getDeviceId());
         intent.putExtra("DEVICE_NAME", getDeviceName());
-        intent.putExtra("ID_USER", id_user);
+        intent.putExtra("ID_USER", id_user1);
         startService(intent);
     }
 

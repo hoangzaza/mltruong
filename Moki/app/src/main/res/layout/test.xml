@@ -34,7 +34,7 @@
                     android:src="@drawable/android" />
 
                 <View
-                    android:id="@+id/view"
+                    android:id="@+id/view_onlie"
                     android:layout_width="@dimen/size_20dp"
                     android:layout_height="@dimen/size_20dp"
                     android:layout_alignBottom="@+id/circleImageView2"
@@ -43,7 +43,7 @@
                     android:background="@drawable/bg_trang_thai_offline" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/txt_trang_thai_onl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/circleImageView2"

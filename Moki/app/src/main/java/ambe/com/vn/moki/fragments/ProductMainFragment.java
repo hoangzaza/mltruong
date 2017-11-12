@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.ViewAnimator;
 
 import com.android.volley.AuthFailureError;
@@ -32,10 +31,8 @@ import ambe.com.vn.moki.activities.MainActivity;
 import ambe.com.vn.moki.adapters.ListviewMainAdapter;
 import ambe.com.vn.moki.adapters.ProductAdapter;
 import ambe.com.vn.moki.interfaces.OnLoadMoreListener;
-import ambe.com.vn.moki.models.products.Image;
 import ambe.com.vn.moki.models.products.ListProductLoadMore;
 import ambe.com.vn.moki.models.products.Product;
-import ambe.com.vn.moki.models.users.Profile;
 import ambe.com.vn.moki.utils.StringUrl;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
@@ -43,6 +40,7 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
  * A simple {@link Fragment} subclass.
  */
 public class ProductMainFragment extends Fragment {
+
 
     private ArrayList<String> arrayList;
     int position;
@@ -59,8 +57,10 @@ public class ProductMainFragment extends Fragment {
 
 
     public ProductMainFragment() {
-        // Required empty public constructor
+
     }
+
+
 
     public static ProductMainFragment newInstance() {
         ProductMainFragment productMainFragment = new ProductMainFragment();
@@ -91,7 +91,7 @@ public class ProductMainFragment extends Fragment {
                     listProductLoadMore = new Gson().fromJson(response, ListProductLoadMore.class);
                     last_id = listProductLoadMore.getLast_id();
                     arrProducts.addAll(listProductLoadMore.getData());
-                    Log.d("BBB","last_id: "+ last_id + "- " + index);
+                    Log.d("BBB", "last_id: " + last_id + "- " + index);
                     rcvProduct.setAdapter(productAdapter);
 
                     productAdapter.notifyDataSetChanged();
@@ -173,6 +173,17 @@ public class ProductMainFragment extends Fragment {
     private void addEvents() {
 
 
+
+        productAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+
+
+            }
+        });
+
+
+
     }
 
     private void addControls() {
@@ -182,25 +193,17 @@ public class ProductMainFragment extends Fragment {
         lv = view.findViewById(R.id.xxx);
 
         arrProducts = new ArrayList<Product>();
-         gr = new GridLayoutManager(getActivity(), 2);
+        gr = new GridLayoutManager(getActivity(), 2);
         rcvProduct.setLayoutManager(gr);
         rcvProduct.setHasFixedSize(true);
         productAdapter = new ProductAdapter(rcvProduct, getActivity(), arrProducts);
 
 
-        productAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
-                arrProducts.add(null);
 
-                new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    
-                }
-            },5000);
 
-            }
-        });
+
     }
+
+
+
 }

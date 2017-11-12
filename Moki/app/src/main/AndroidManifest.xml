@@ -30,7 +30,9 @@
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme" />
         <activity android:name=".activities.SearchActivity" />
-        <activity android:name=".activities.MainActivity"></activity>
+        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.WebViewActivity" />
+        <activity android:name=".activities.CommentActivity"></activity>
     </application>
 
 </manifest>

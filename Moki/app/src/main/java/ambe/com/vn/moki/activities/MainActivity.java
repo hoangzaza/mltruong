@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView txtName;
 
     private Profile myProfile;
+    public static String token = "";
+    public static String id_user = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,8 +94,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         img_message = findViewById(R.id.img_message);
         img_notification = findViewById(R.id.img_notification);
         imgShell = findViewById(R.id.img_shell);
-        imgAvatarUser=findViewById(R.id.img_avatar_profile);
-        txtName=findViewById(R.id.txt_dang_nhap_main_atv);
+        imgAvatarUser = findViewById(R.id.img_avatar_profile);
+        txtName = findViewById(R.id.txt_dang_nhap_main_atv);
 
 
         drawer = findViewById(R.id.drawer_layout);
@@ -124,8 +126,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         drawer.useCustomBehavior(Gravity.START);
         drawer.useCustomBehavior(Gravity.END);
 
-        Intent intent=getIntent();
-        Bundle bundle=intent.getBundleExtra("BUNDLE");
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("BUNDLE");
         if (bundle != null) {
             myProfile = (Profile) bundle.getSerializable("PRO");
 
@@ -134,9 +136,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .error(R.drawable.no_image)
                     .into(imgAvatarUser);
             txtName.setText(myProfile.getUsername());
+            token = myProfile.getToken();
+            id_user = myProfile.getId_user();
+            Log.d("TOKEN", token);
 
-            arrMenuItem.set(9, new MenuItem(R.drawable.sidemenu_icon_logout_normal, getString(R.string.dang_xuat),0));
+            arrMenuItem.set(9, new MenuItem(R.drawable.sidemenu_icon_logout_normal, getString(R.string.dang_xuat), 0));
         }
+
+
     }
 
     private void addEvents() {
@@ -147,6 +154,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         img_search.setOnClickListener(this);
         img_changeview.setOnClickListener(this);
         imgShell.setOnClickListener(this);
+        imgAvatarUser.setOnClickListener(this);
+        txtName.setOnClickListener(this);
 
         listMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -182,6 +191,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             menuAdapter.notifyDataSetChanged();
                         }
 
+                        break;
+
+                    case 10:
+                        if (arrMenuItem.get(10).getTxtName().equals("Đăng nhập")) {
+                            Intent intent = new Intent(getApplicationContext(), TestDangNhapActivity.class);
+                            startActivity(intent);
+                        }
                         break;
                 }
             }
@@ -281,7 +297,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.img_shell:
                 Toast.makeText(MainActivity.this, "shell", Toast.LENGTH_LONG).show();
                 break;
+            case R.id.img_avatar_profile:
+                xuLyXemMyInfor();
+                break;
+            case R.id.txt_dang_nhap_main_atv:
+                xuLyXemMyInfor();
+                break;
         }
+
+    }
+
+    private void xuLyXemMyInfor() {
+
+        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+        Bundle bundle = new Bundle();
+        intent.putExtra("BUNMAIN", bundle);
+        bundle.putSerializable("MYPRO", myProfile);
+        startActivity(intent);
 
     }
 
@@ -290,4 +322,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
     }
+
+
 }

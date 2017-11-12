@@ -2,6 +2,7 @@ package ambe.com.vn.moki.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 
 import ambe.com.vn.moki.R;
 import ambe.com.vn.moki.activities.ProductDetailActivity;
+import ambe.com.vn.moki.interfaces.OnHideToolBar;
 import ambe.com.vn.moki.interfaces.OnLoadMoreListener;
 import ambe.com.vn.moki.models.products.Product;
 
@@ -35,6 +37,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private final int VIEW_TYPE_ITEM = 1;
     private final int VIEW_TYPE_LOADING = 0;
     private int previousTotal = 0;
+    private OnHideToolBar mOnHideToolBar;
 
     private boolean mWithFooter = true;
 
@@ -55,7 +58,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             gr.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int position) {
-            //        if (getItemViewType(position) == VIEW_TYPE_LOADING)
+                    //        if (getItemViewType(position) == VIEW_TYPE_LOADING)
                     if (getItemViewType(position) == VIEW_TYPE_LOADING)
                         return gr.getSpanCount();
                     else return 1;
@@ -72,11 +75,10 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     firstVisibleItem = gr.findFirstVisibleItemPosition();
                     lastVisibleItem = gr.findLastVisibleItemPosition();
                     //           Log.d("BBB", " total: "+ totalItemCount+  " visit: " + visibleItemCount + " past: " + pastVisiblesItems);
- //                   Log.d("BBB", " total: " + totalItemCount + "vissit: " + visibleItemCount + " last: " + lastVisibleItem + " first: " + firstVisibleItem);
-
+                    //                   Log.d("BBB", " total: " + totalItemCount + "vissit: " + visibleItemCount + " last: " + lastVisibleItem + " first: " + firstVisibleItem);
 
                     if (!isLoading && (totalItemCount <= (firstVisibleItem + visibleItemCount))) {
-                    Log.d("BBB","size "+ arrayList.size() + "-" +"grid "+ gr.getItemCount() );
+                        Log.d("BBB", "size " + arrayList.size() + "-" + "grid " + gr.getItemCount());
                         if (mOnLoadMoreListener != null) {
                             mOnLoadMoreListener.onLoadMore();
                         }
@@ -141,7 +143,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //            return VIEW_TYPE_LOADING;
 //        return VIEW_TYPE_ITEM;
 
-        return (mWithFooter && position >= arrayList.size() ) ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
+        return (mWithFooter && position >= arrayList.size()) ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
 
 
     }
@@ -150,14 +152,12 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         this.mOnLoadMoreListener = mOnLoadMoreListener;
     }
 
+
     @Override
     public int getItemCount() {
-        return  (mWithFooter) ? arrayList.size() + 1 : arrayList.size();
+        return (mWithFooter) ? arrayList.size() + 1 : arrayList.size();
 
     }
-
-
-
 
 
     public class LoadingViewHolder extends RecyclerView.ViewHolder {
@@ -190,7 +190,12 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, ProductDetailActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("PRO", arrayList.get(getPosition()));
+                    intent.putExtra("BUN", bundle);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
+
                 }
             });
         }

@@ -5,6 +5,6 @@ package ambe.com.vn.moki.utils;
  */
 
 public class StringUrl {
-    public static final String urlLogin="http://10.10.119.38:8000/login";
-    public static final String urlGetListProduct="http://10.10.119.38:8000/get_list_product";
+    public static final String urlLogin="http://192.168.1.107:8000/login";
+    public static final String urlGetListProduct="http://192.168.1.107:8000/get_list_product";
 }

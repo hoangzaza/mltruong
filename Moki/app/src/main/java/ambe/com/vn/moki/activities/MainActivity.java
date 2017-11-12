@@ -1,11 +1,23 @@
 package ambe.com.vn.moki.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -15,17 +27,21 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.infideap.drawerbehavior.AdvanceDrawerLayout;
 import com.squareup.picasso.Picasso;
 import com.tekle.oss.android.animation.AnimationFactory;
 
 import java.util.ArrayList;
 
+import ambe.com.vn.moki.Manifest;
 import ambe.com.vn.moki.R;
 import ambe.com.vn.moki.adapters.MenuMainAdapter;
 import ambe.com.vn.moki.adapters.PagerTrangChuAdapter;
@@ -57,8 +73,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView img_search;
     private CircleImageView imgAvatarUser;
     private TextView txtName;
+    private  String id_user;
 
     private Profile myProfile;
+
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    private static final int PERMISSION_REQUEST_CODE = 1;
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    public static final String REGISTRATION_PROCESS = "registration";
+    public static final String MESSAGE_RECEIVED = "message_received";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +99,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         addControls();
+        if (checkPlayServices()) {
+
+            startRegisterProcess();
+        }
+        registerReceiver();
+
+//        Intent intent = getIntent();
+//        if (intent != null) {
+//            Log.d("DAUMOEMAY",intent.getAction());
+//            if (intent.getAction().equals(MESSAGE_RECEIVED)) {
+//                String message = intent.getStringExtra("message");
+//                showAlertDialog(message);
+//            }
+//        }
         addEvents();
 
 
@@ -134,7 +172,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .error(R.drawable.no_image)
                     .into(imgAvatarUser);
             txtName.setText(myProfile.getUsername());
-
+            id_user = myProfile.getId_user();
+            Toast.makeText(this, id_user, Toast.LENGTH_SHORT).show();
             arrMenuItem.set(9, new MenuItem(R.drawable.sidemenu_icon_logout_normal, getString(R.string.dang_xuat),0));
         }
     }
@@ -289,5 +328,144 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(MainActivity.this, SearchActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
+    }
+
+
+    private void startRegisterProcess() {
+
+        if (checkPermission()) {
+
+            startRegisterService();
+
+        } else {
+
+            requestPermission();
+        }
+
+    }
+
+    private void startRegisterService() {
+
+        Intent intent = new Intent(MainActivity.this, RegistrationIntentService.class);
+        intent.putExtra("DEVICE_ID", getDeviceId());
+        intent.putExtra("DEVICE_NAME", getDeviceName());
+        intent.putExtra("ID_USER", id_user);
+        startService(intent);
+    }
+
+    private void registerReceiver() {
+
+        LocalBroadcastManager bManager = LocalBroadcastManager.getInstance(this);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(REGISTRATION_PROCESS);
+        intentFilter.addAction(MESSAGE_RECEIVED);
+        bManager.registerReceiver(broadcastReceiver, intentFilter);
+
+    }
+
+    private void showAlertDialog(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("GCM Message Received !");
+        builder.setMessage(message);
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.show();
+    }
+
+    private String getDeviceId() {
+
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+
+        }
+        return telephonyManager.getDeviceId();
+    }
+
+    private String getDeviceName(){
+        String deviceName = Build.MODEL;
+        String deviceMan = Build.MANUFACTURER;
+        return  deviceMan + " " +deviceName;
+    }
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if(intent.getAction().equals(REGISTRATION_PROCESS)){
+
+                String result  = intent.getStringExtra("result");
+                String message = intent.getStringExtra("message");
+                Log.d(TAG, "onReceive: "+result+message);
+                Snackbar.make(findViewById(R.id.drawer_layout),result + " : " + message,Snackbar.LENGTH_SHORT).show();
+            } else if (intent.getAction().equals(MESSAGE_RECEIVED)){
+
+                String message = intent.getStringExtra("message");
+                showAlertDialog(message);
+            }
+        }
+    };
+
+    private boolean checkPermission(){
+        int result = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.C2D_MESSAGE);
+        if (result == PackageManager.PERMISSION_GRANTED){
+
+            return true;
+
+        } else {
+
+            return false;
+        }
+    }
+
+    private void requestPermission(){
+
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.C2D_MESSAGE},PERMISSION_REQUEST_CODE);
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    startRegisterService();
+
+                } else {
+
+                    Snackbar.make(findViewById(R.id.drawer_layout),"Permission Denied, Please allow to proceed !.",Snackbar.LENGTH_LONG).show();
+
+                }
+                break;
+        }
+    }
+
+    private boolean checkPlayServices() {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                        .show();
+            } else {
+                Log.i(TAG, "This device is not supported.");
+                finish();
+            }
+            return false;
+        }
+        return true;
     }
 }

@@ -123,7 +123,7 @@ public class TestDangNhapActivity extends AppCompatActivity implements View.OnCl
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("ERRO", error.getMessage());
+                    Log.d("ABC", error.getMessage()+"");
                     Toast.makeText(TestDangNhapActivity.this, "Sai tài khoản hoặc mật khẩu", Toast.LENGTH_SHORT).show();
                 }
             }) {

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "756267790019",
+    "project_id": "firebase-mokiapp"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756267790019:android:4d36a8715f6b66e7",
+        "android_client_info": {
+          "package_name": "ambe.com.vn.moki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "756267790019-ognqvaia7mhrgbo9g7ebbv16vf5afj4b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcAfRX44QcB3gZB2W4ARrFiWm2dguPs7E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,7 +3,6 @@ package ambe.com.vn.moki.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,10 +17,11 @@ import com.squareup.picasso.Picasso;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import ambe.com.vn.moki.R;
+
 import ambe.com.vn.moki.activities.ProductDetailActivity;
 import ambe.com.vn.moki.interfaces.OnLoadMoreListener;
 import ambe.com.vn.moki.models.products.Product;
+import ambe.com.vn.moki.R;
 
 /**
  * Created by AMBE on 09/10/2017.
@@ -40,7 +40,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
     private OnLoadMoreListener mOnLoadMoreListener;
-    private boolean isLoading = false;
+    public boolean isLoading = false;
     private int visibleThreshold = 1;
     private int lastVisibleItem,
             totalItemCount, visibleItemCount, firstVisibleItem;
@@ -71,16 +71,18 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     totalItemCount = gr.getItemCount();
                     firstVisibleItem = gr.findFirstVisibleItemPosition();
                     lastVisibleItem = gr.findLastVisibleItemPosition();
+
                     //           Log.d("BBB", " total: "+ totalItemCount+  " visit: " + visibleItemCount + " past: " + pastVisiblesItems);
  //                   Log.d("BBB", " total: " + totalItemCount + "vissit: " + visibleItemCount + " last: " + lastVisibleItem + " first: " + firstVisibleItem);
 
-
-                    if (!isLoading && (totalItemCount <= (firstVisibleItem + visibleItemCount))) {
-                    Log.d("BBB","size "+ arrayList.size() + "-" +"grid "+ gr.getItemCount() );
-                        if (mOnLoadMoreListener != null) {
+                    if (!isLoading && totalItemCount <= firstVisibleItem+lastVisibleItem ) {
+                       Log.d("BBB","sizeaaaaaaaaaaaaaaa "+ arrayList.size() +"load :  "+isLoading + "  pas :" + dy );
+                        if (mOnLoadMoreListener != null ) {
                             mOnLoadMoreListener.onLoadMore();
+
                         }
-                        isLoading = true;
+                        isLoading= true;
+
                     }
                 }
 
@@ -89,6 +91,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
         });
+
     }
 
     @Override
@@ -107,22 +110,25 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ProductViewHolder) {
-            decimalFormat = new DecimalFormat("###,###,###");
-            ProductViewHolder productViewHolder = (ProductViewHolder) holder;
-            Product product = arrayList.get(position);
-            String str = decimalFormat.format(Integer.parseInt(product.getPrice()));
-            int x = str.lastIndexOf(".");
-            String price = str.substring(0, x);
-            productViewHolder.txtPrice.setText(price + " K");
-            productViewHolder.txtLike.setText(product.getLike().size() + "");
-            productViewHolder.txtMess.setText(product.getComment().size() + "");
-            Picasso.with(context)
-                    .load(product.getImage().get(0).getUrl())
-                    .error(R.drawable.no_image)
-                    .into(productViewHolder.imageView);
+            if(arrayList.get(position) != null){
+                decimalFormat = new DecimalFormat("###,###,###");
+                ProductViewHolder productViewHolder = (ProductViewHolder) holder;
+                Product product = arrayList.get(position);
+                Log.d("truong", product.getPrice());
+                String str = decimalFormat.format(Integer.parseInt(product.getPrice()));
+//            int x = str.lastIndexOf(".");
+//            String price = str.substring(0, x); // thang nao sua cho nay :V moe hoang bo d cmm
+                productViewHolder.txtPrice.setText(str + " K");
+                productViewHolder.txtLike.setText(product.getLike().size() + "");
+                productViewHolder.txtMess.setText(product.getComment().size() + "");
+                Picasso.with(context)
+                        .load(product.getImage().get(0).getUrl())
+                        .error(R.drawable.no_image)
+                        .into(productViewHolder.imageView);
 //        viewHolder.imageView.setImageResource(R.drawable.android);
 
-            productViewHolder.txtName.setText(product.getName_product());
+                productViewHolder.txtName.setText(product.getName_product());
+            }
         } else if (holder instanceof LoadingViewHolder) {
             LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holder;
             loadingViewHolder.progressBar.setIndeterminate(true);

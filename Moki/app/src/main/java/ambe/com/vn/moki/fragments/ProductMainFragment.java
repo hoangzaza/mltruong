@@ -56,6 +56,7 @@ public class ProductMainFragment extends Fragment {
     public ViewAnimator viewAnimator;
     private ListProductLoadMore listProductLoadMore;
     private GridLayoutManager gr;
+    private boolean isLoadMore;
 
 
     public ProductMainFragment() {
@@ -75,7 +76,9 @@ public class ProductMainFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_product_main, container, false);
         addControls();
-        loadListProduct(index);
+        //loadListProduct(index);
+        initData();
+       // productAdapter.setLoaded();
         addEvents();
         ListviewMainAdapter listviewMainAdapter = new ListviewMainAdapter(this.getActivity(), arrProducts);
         lv.setAdapter(listviewMainAdapter);
@@ -91,9 +94,8 @@ public class ProductMainFragment extends Fragment {
                     listProductLoadMore = new Gson().fromJson(response, ListProductLoadMore.class);
                     last_id = listProductLoadMore.getLast_id();
                     arrProducts.addAll(listProductLoadMore.getData());
-                    Log.d("BBB","last_id: "+ last_id + "- " + index);
+                    Log.d("BBB", "last_idssssss: " + last_id + "- " + index);
                     rcvProduct.setAdapter(productAdapter);
-
                     productAdapter.notifyDataSetChanged();
 
 
@@ -110,7 +112,7 @@ public class ProductMainFragment extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> hashMap = new HashMap<>();
                 hashMap.put("category_id", "1");
-                hashMap.put("index", x + "");
+                hashMap.put("index", index + "");
                 hashMap.put("last_id", last_id);
 
 
@@ -119,6 +121,42 @@ public class ProductMainFragment extends Fragment {
         };
         requestQueue.add(stringRequest);
     }
+
+
+    private void initData() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, StringUrl.urlGetListProduct, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (response != null) {
+                    listProductLoadMore = new Gson().fromJson(response, ListProductLoadMore.class);
+                    last_id = listProductLoadMore.getLast_id();
+                    arrProducts.addAll(listProductLoadMore.getData());
+                    Log.d("BBB", "last_id: " + last_id + "- " + index);
+                    rcvProduct.setAdapter(productAdapter);
+                    productAdapter.notifyDataSetChanged();
+                    productAdapter.setLoaded();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("ERROR", error.getMessage());
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> hashMap = new HashMap<>();
+                hashMap.put("category_id", "1");
+                hashMap.put("index", 0 + "");
+
+                return hashMap;
+            }
+        };
+        requestQueue.add(stringRequest);
+    }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -182,25 +220,33 @@ public class ProductMainFragment extends Fragment {
         lv = view.findViewById(R.id.xxx);
 
         arrProducts = new ArrayList<Product>();
-         gr = new GridLayoutManager(getActivity(), 2);
+        gr = new GridLayoutManager(getActivity(), 2);
         rcvProduct.setLayoutManager(gr);
         rcvProduct.setHasFixedSize(true);
         productAdapter = new ProductAdapter(rcvProduct, getActivity(), arrProducts);
 
 
         productAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
-                arrProducts.add(null);
+                    @Override
+                    public void onLoadMore() {
 
-                new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    
-                }
-            },5000);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+
+                               loadListProduct(++index);
+
+                           // index = index+1;
+                            productAdapter.setLoaded();
+
+                        }
+                    }, 5000);
+
+
 
             }
         });
+
     }
 }

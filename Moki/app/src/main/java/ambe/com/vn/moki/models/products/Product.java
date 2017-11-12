@@ -26,7 +26,7 @@ public class Product implements Serializable {
     private Size size;
     private Brand brand;
     private Seller seller;
-    private Category category;
+    private ArrayList<Category> category;
     private String state;
     private ArrayList<Profile> blocked;
     private ArrayList<Profile> can_edit;
@@ -43,7 +43,14 @@ public class Product implements Serializable {
         this.comment = comment;
     }
 
-    public Product(String id_product, String name_product, ArrayList<Image> image, String price, String price_precent, String described, String ships_from, Ships_from_id ships_from_id, String condition, String created, ArrayList<Profile> like, ArrayList<Profile> comment, Video video, Size size, Brand brand, Seller seller, Category category, String state, ArrayList<Profile> blocked, ArrayList<Profile> can_edit, String url_share, String weight, Dimention dimention, ArrayList<Object> list_report) {
+    public void setCategory(ArrayList<Category> category) {
+        this.category = category;
+    }
+
+    public Product() {
+    }
+
+    public Product(String id_product, String name_product, ArrayList<Image> image, String price, String price_precent, String described, String ships_from, Ships_from_id ships_from_id, String condition, String created, ArrayList<Profile> like, ArrayList<Profile> comment, Video video, Size size, Brand brand, Seller seller, ArrayList<Category> category, String state, ArrayList<Profile> blocked, ArrayList<Profile> can_edit, String url_share, String weight, Dimention dimention, ArrayList<Object> list_report) {
         this.id_product = id_product;
         this.name_product = name_product;
         this.image = image;
@@ -68,9 +75,6 @@ public class Product implements Serializable {
         this.weight = weight;
         this.dimention = dimention;
         this.list_report = list_report;
-    }
-
-    public Product() {
     }
 
     public String getId_product() {
@@ -201,13 +205,7 @@ public class Product implements Serializable {
         this.seller = seller;
     }
 
-    public Category getCategory() {
-        return category;
-    }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 
     public String getState() {
         return state;
